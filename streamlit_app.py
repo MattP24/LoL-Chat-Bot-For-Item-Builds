@@ -24,3 +24,5 @@ if prompt := st.chat_input("Hey, What's up?"):
         st.markdown(response)
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
+
+st.text(st.secrets["OPENAI_API_KEY"][0:10])
