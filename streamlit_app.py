@@ -1,4 +1,5 @@
 import streamlit as st
+import openai
 
 st.title('LoL Chat Bot For Item Builds')
 
