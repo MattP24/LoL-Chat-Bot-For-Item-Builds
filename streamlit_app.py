@@ -1,9 +1,16 @@
 import streamlit as st
-import openai
+from openai import OpenAI
 import pandas as pd
 import numpy as np
 
 st.title('LoL Item Build Advice Powered by AI')
+
+# Set OpenAI API key from Streamlit secrets
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
+# Set a default model
+if "openai_model" not in st.session_state:
+    st.session_state["openai_model"] = "gpt-3.5-turbo"
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -52,9 +59,10 @@ def build_prompt(champion, role, enemy_champ):
 
 def get_build_advice(champion, role, enemy_champ):
     prompt = build_prompt(champion, role, enemy_champ)
-    
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+
+    # openai.ChatCompletion.create
+    response = client.chat.completions.create(
+        model=st.session_state["openai_model"],
         messages=[
             {"role": "system", "content": "You are a helpful assistant and League of Legends coach."},
             {"role": "user", "content": prompt}
