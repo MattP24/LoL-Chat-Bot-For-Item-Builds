@@ -6,6 +6,7 @@ import numpy as np
 st.title('LoL Item Build Advice Powered by AI')
 
 # Set OpenAI API key from Streamlit secrets
+# openai.api_key = st.secrets["OPENAI_API_KEY"]
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # Set a default model
@@ -20,8 +21,6 @@ if "messages" not in st.session_state:
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
-
-openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 def build_prompt(champion, role, enemy_champ):
     base_prompt = f"""
