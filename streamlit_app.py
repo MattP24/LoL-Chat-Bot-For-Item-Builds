@@ -1,5 +1,7 @@
 import streamlit as st
 import openai
+import pandas as pd
+import numpy as np
 
 st.title('LoL Item Build Advice Powered by AI')
 
