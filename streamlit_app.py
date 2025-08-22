@@ -64,7 +64,8 @@ def get_build_advice(champion, role, enemy_champ):
         stream=True
     )
 
-    return response['choices'][0]['message']['content']
+    # return response['choices'][0]['message']['content']
+    return response
     # print(response.output_text)
 
 lol_champs = pd.read_csv("080725_LoL_champion_data_revised.csv", index_col=0)
