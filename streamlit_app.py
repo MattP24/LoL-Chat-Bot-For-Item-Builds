@@ -64,9 +64,13 @@ def get_build_advice(champion, role, enemy_champ):
     return response['choices'][0]['message']['content']
     # print(response.output_text)
 
-champion = st.text_input("Your Champion", "Darius")
+lol_champs = pd.read_csv("080725_LoL_champion_data_revised.csv", index_col=0)
+champ_list = lol_champs["apiname"].to_list()
+
+champion = st.selectbox("Your Champion", champ_list)
 role = st.selectbox("Role", ["Top", "Jungle", "Mid", "ADC", "Support"])
-enemy = st.text_input("Enemy Champion", "Teemo")
+champ_list.remove(champion)
+enemy = st.selectbox("Enemy Champion", champ_list)
 
 if st.button("Get Advice"):
     advice = get_build_advice(champion, role, enemy)
