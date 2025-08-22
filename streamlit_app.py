@@ -60,7 +60,8 @@ def get_build_advice(champion, role, enemy_champ):
             {"role": "user", "content": prompt}
         ],
         temperature=0.7,
-        max_tokens=120
+        max_tokens=120,
+        stream=True
     )
 
     return response['choices'][0]['message']['content']
