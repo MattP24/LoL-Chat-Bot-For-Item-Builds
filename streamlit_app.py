@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import luadata
 
-st.title('LoL Item Build AI Advisor')
+st.title('LoL Item Build AI Advisor with AI')
 
 # Set OpenAI API key from Streamlit secrets
 # openai.api_key = st.secrets["OPENAI_API_KEY"]
