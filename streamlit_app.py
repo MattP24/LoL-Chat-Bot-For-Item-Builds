@@ -114,7 +114,7 @@ lol_item_list = lol_item_list[lol_item_list["classic sr 5v5"]]
 lol_item_list = lol_item_list[lol_item_list["type"].apply(lambda x: "Legendary" in x or "Boots" in x or "Starter" in x or "Potion" in x or "Potion" in x)]
 lol_item_list = ", ".join(lol_item_list.index.tolist())
 
-if st.button("Get Advice"):
+if middle.button("Get Advice"):
     advice = get_build_advice(champion, role, enemy)
-    st.markdown("### Advice:")
-    st.write_stream(advice)
+    middle.markdown("### Advice:")
+    middle.write_stream(advice)
