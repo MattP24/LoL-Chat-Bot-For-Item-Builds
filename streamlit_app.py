@@ -4,7 +4,8 @@ import pandas as pd
 import numpy as np
 import luadata
 
-st.title('LoL Item Build AI Advisor with AI')
+st.set_page_config(layout="wide")
+st.title('LoL Item Build AI Advisor')
 
 # Set OpenAI API key from Streamlit secrets
 # openai.api_key = st.secrets["OPENAI_API_KEY"]
@@ -14,16 +15,7 @@ client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
 
-# Initialize chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# Display chat messages from history on app rerun
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
-
-left, middle, right = st.columns(3, vertical_alignment="bottom")
+left, middle, right = st.columns(3, vertical_alignment="top")
 
 def build_prompt(champion, role, enemy_champ):
     base_prompt = f"""
