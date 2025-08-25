@@ -23,6 +23,8 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
+left, middle, right = st.columns(3, vertical_alignment="bottom")
+
 def build_prompt(champion, role, enemy_champ):
     base_prompt = f"""
     You are a League of Legends coach AI specializing in item builds and matchup advice for Summoner's Rift 5v5 game mode. Only recommend items from the list below:
@@ -95,10 +97,10 @@ def get_build_advice(champion, role, enemy_champ):
 lol_champs = pd.read_csv("080725_LoL_champion_data_revised.csv", index_col=0)
 champ_list = lol_champs["apiname"].to_list()
 
-champion = st.selectbox("Your Champion", champ_list)
-role = st.selectbox("Role", ["Top", "Jungle", "Mid", "ADC", "Support"])
+champion = left.selectbox("Your Champion", champ_list)
+role = middle.selectbox("Role", ["Top", "Jungle", "Mid", "ADC", "Support"])
 champ_list.remove(champion)
-enemy = st.selectbox("Enemy Champion", champ_list)
+enemy = right.selectbox("Enemy Champion", champ_list)
 
 data = luadata.read("lol_items.lua", encoding="utf-8")
 lol_item_list = pd.DataFrame(data)
